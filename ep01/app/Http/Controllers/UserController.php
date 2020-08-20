@@ -16,8 +16,8 @@ class UserController extends Controller
         //$user->save();
 
         $user = User::Where('id', '=', 1)->first();
-
-        return view('listUser', [
+        //dd($user);
+        return view('listAllUsers', [
             'userList'=>$user
         ]);
     }

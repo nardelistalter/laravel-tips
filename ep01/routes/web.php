@@ -25,7 +25,8 @@ Route::get('listagem-usuario', 'UserController@listUser');
  * VERBO GET
  */
 
- //Route::get('usuarios', 'Form\\TesteController@listAllUsers')->name('users.listAll');
+ Route::get('usuarios', 'Form\\TesteController@listAllUsers')->name('users.listAll');
+ Route::get('usuarios/{user}', 'Form\\TesteController@listUser')->name('users.listUser');
 
 /**
  * VERBO POST
