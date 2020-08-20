@@ -18,3 +18,23 @@ Route::get('/', function () {
 });
 
 Route::get('listagem-usuario', 'UserController@listUser');
+
+//Route::verb('uri', 'Controller@method')->name('route-name');
+
+/**
+ * VERBO GET
+ */
+
+ //Route::get('usuarios', 'Form\\TesteController@listAllUsers')->name('users.listAll');
+
+/**
+ * VERBO POST
+ */
+
+/**
+ * VERBO PUT/PATCH
+ */
+
+/**
+ * VERBO DELETE
+ */
