@@ -21,21 +21,29 @@ Route::get('listagem-usuario', 'UserController@listUser');
 
 //Route::verb('uri', 'Controller@method')->name('route-name');
 
-/**
- * VERBO GET
- */
+Route::group(['namespace' => 'form'], function(){
 
- Route::get('usuarios', 'Form\\TesteController@listAllUsers')->name('users.listAll');
- Route::get('usuarios/{user}', 'Form\\TesteController@listUser')->name('users.listUser');
+    /**
+     * VERBO GET
+     */
 
-/**
- * VERBO POST
- */
+    Route::get('usuarios', 'TesteController@listAllUsers')->name('users.listAll');
+    Route::get('usuarios/store', 'TesteController@formAddUser')->name('users.formAddUser');
+    Route::get('usuarios/editar/{user}', 'TesteController@formEditUser')->name('users.formEditUser');
+    Route::get('usuarios/{user}', 'TesteController@listUser')->name('users.listUser');
 
-/**
- * VERBO PUT/PATCH
- */
+    /**
+    * VERBO POST
+    */
+    Route::post('usuarios/store', 'TesteController@storeUser')->name('users.store');
+    /**
+    * VERBO PUT/PATCH
+    */
+    Route::put('usuarios/edit/{user}', 'TesteController@edit')->name('users.edit');
 
-/**
- * VERBO DELETE
- */
+    /**
+    * VERBO DELETE
+    */
+    Route::delete('usuarios/destroy/{user}', 'TesteController@destroy')->name('user.destroy');
+
+});

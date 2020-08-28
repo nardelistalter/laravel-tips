@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Form;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TesteController extends Controller
 {
@@ -17,5 +18,50 @@ class TesteController extends Controller
     public function listUser(User $user) {
         //dd($users);
         return view('listUser', ['user'=> $user]);
+    }
+
+    public function formAddUser() {
+        return view('addUser');
+    }
+
+    public function storeUser(Request $request) {
+        $user = new User();
+        $user->name = $request->name;
+        if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            $user->email = $request->email;
+        }
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return redirect()->route('users.listAll');
+        //var_dump($request);
+    }
+
+    public function formEditUser(User $user) {
+        return view('editUser', ['user' => $user]);
+    }
+
+    public function edit(User $user, Request $request) {
+        $user->name = $request->name;
+        if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+            $user->email = $request->email;
+        }
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.listAll');
+    }
+
+    public function destroy(User $user) {
+        //dump($user);
+        //var_dump($user);
+        //dd($user);
+        $user->delete();
+        return redirect()->route('users.listAll');
+
     }
 }
